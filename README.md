@@ -4,36 +4,36 @@ Ez a weboldal kizárólag oktatási céllal, vizsgaremekként készült. A rends
 
 Felhasznált technológiák
 
-1.	Adatbázis:
-	MySQL (MariaDB) – XAMPP
+1. Adatbázis:
+	-MySQL (MariaDB) – XAMPP
 
-2.	Backend:
-	JavaScript – Node.JS
-	Express
-	Cors
-	Prisma ORM (Object-Relational Mapping)
-	Nodemailer (e-mail levelezés)
-	Bcryptjs (visszafejthetetlen hash titkosítás)
-	Multer (médiafájl feltöltés, jelenleg kép)
-	Node-cron (automatizált kódok futtatása)
-	Dotenv (környezeti változók)
-	HTTPS
-	Nodemon (fejlesztésnél automatikus program újraindítás)
-	Middleware használat (felhasználói autentikáció)
+2. Backend:
+	- JavaScript – Node.JS
+	- Express
+	- Cors
+	- Prisma ORM (Object-Relational Mapping)
+	- Nodemailer (e-mail levelezés)
+	- Bcryptjs (visszafejthetetlen hash titkosítás)
+	- Multer (médiafájl feltöltés, jelenleg kép)
+	- Node-cron (automatizált kódok futtatása)
+	- Dotenv (környezeti változók)
+	- HTTPS
+	- Nodemon (fejlesztésnél automatikus program újraindítás)
+	- Middleware használat (felhasználói autentikáció)
 
-3.	Frontend:
-	JavaScript – Node.JS
-	React-Vite
-	React Router DOM
-	TailwindCSS
-	DaisyUI
-	React Toastify
-	React Icons
-	React Twitch Embed Video
+3. Frontend:
+	- JavaScript – Node.JS
+	- React-Vite
+	- React Router DOM
+	- TailwindCSS
+	- DaisyUI
+	- React Toastify
+	- React Icons
+	- React Twitch Embed Video
 
-4.	Fejlesztési eszközök:
-	Fejlesztői környezet: Visual Studio Code
-	Verziókezelés: GitHub
+4. Fejlesztési eszközök:
+	- Fejlesztői környezet: Visual Studio Code
+	- Verziókezelés: GitHub
 
 A projekt ismertetője
 
