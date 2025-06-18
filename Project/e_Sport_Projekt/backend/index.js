@@ -34,8 +34,12 @@ const server = https.createServer(options,app);
 app.use('/insert',require('./routes/insertRoutes'));
 app.use('/delete',require('./routes/deleteRoutes'));
 
+const port = process.env.PORT || 8000;
+server.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 
-server.listen(8000,()=>{console.log(`Fut a szerver\nhttps://localhost:8000/`)});
+// server.listen(8000,()=>{console.log(`Fut a szerver\nhttps://localhost:8000/`)});
 
 app.get('/',(req,res)=>{
     res.send("Esport adatbázisos Backend");
