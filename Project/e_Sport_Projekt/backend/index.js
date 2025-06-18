@@ -57,7 +57,7 @@ const path = require('path');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin: ['http://localhost:5173', 'http://localhost:5174'], // később frissítsd az éles domainekre
+    origin: ['https://korcsokroland.hu', 'https://backend.korcsokroland.hu'],
     credentials: true
 }));
 app.use(cookieParser());
