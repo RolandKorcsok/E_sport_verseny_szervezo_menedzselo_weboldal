@@ -57,9 +57,17 @@ const path = require('path');
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors({
-    origin: ['https://korcsokroland.hu', 'https://backend.korcsokroland.hu'],
-    credentials: true
+  origin: [
+    'http://localhost:5173',
+    'http://localhost:5174',
+    'https://korcsokroland.hu',
+    'https://www.korcsokroland.hu',
+    'https://esport.korcsokroland.hu',
+    'https://www.esport.korcsokroland.hu'
+  ],
+  credentials: true
 }));
+
 app.use(cookieParser());
 
 // Statikus fájlok
