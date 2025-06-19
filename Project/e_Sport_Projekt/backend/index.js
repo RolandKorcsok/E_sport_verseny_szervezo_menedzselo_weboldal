@@ -68,6 +68,26 @@ app.use(cors({
   credentials: true
 }));
 
+app.use((req, res, next) => {
+  const auth = req.headers['authorization'];
+
+  if (!auth) {
+    res.setHeader('WWW-Authenticate', 'Basic realm="Védett"');
+    return res.status(401).send('Hitelesítés szükséges');
+  }
+
+  const [username, password] = Buffer.from(auth.split(' ')[1], 'base64')
+    .toString()
+    .split(':');
+
+  if (username === process.env.ADMIN_USER && password === process.env.ADMIN_PASS) {
+    next(); // továbbléphet
+  } else {
+    return res.status(403).send('Hozzáférés megtagadva');
+  }
+});
+
+
 app.use(cookieParser());
 
 // Statikus fájlok
