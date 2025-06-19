@@ -255,6 +255,47 @@ const verifyEmailSend = async (req, res) => {
 
 //Email verifikált függvény hívás
 
+const emailVerifiedModGET = async (req, res) => {
+  const { token } = req.query;
+
+  if (!token) {
+    return res.status(400).send("❌ Hiányzó token.");
+  }
+
+  try {
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+    const user = await prisma.users.findFirst({
+      where: { email_address: decoded.email }
+    });
+
+    if (!user) {
+      return res.send("❌ Nem található felhasználó.");
+    }
+
+    if (user.status === "active" || user.status === "inactive") {
+      return res.send("ℹ️ Ez a fiók már meg lett erősítve.");
+    }
+
+    await prisma.users.update({
+      where: { id: user.id },
+      data: { status: "active" }
+    });
+
+    // Válasz szöveggel vagy átirányítással:
+    return res.redirect("https://www.esport.korcsokroland.hu/login");
+
+  } catch (error) {
+    if (error.name === 'TokenExpiredError') {
+      return res.send("⏱️ A megerősítő link lejárt.");
+    } else if (error.name === 'JsonWebTokenError') {
+      return res.send("❌ Érvénytelen megerősítő link.");
+    } else {
+      return res.send(`⚠️ Hiba: ${error.message}`);
+    }
+  }
+};
+
 
 const emailVerifiedMod = async (req, res) => {
 
@@ -1028,5 +1069,6 @@ module.exports = {
     passEmailVerify,
     verifyEmailSend,
     emailVerifiedMod,
+    emailVerifiedModGET,
     userProfileSearchByName
 }

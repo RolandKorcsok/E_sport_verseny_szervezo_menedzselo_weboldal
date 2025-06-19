@@ -2,7 +2,7 @@ const express = require('express');
 
 const router = express.Router();
 
-const { userLogin, userReg, userLogout, isAuthenticated, protected, userGetPicturePath, passEmailSend, passEmailVerify, verifyEmailSend, emailVerifiedMod, userProfileSearchByName } = require('../controllers/userController');
+const { emailVerifiedModGET , userLogin, userReg, userLogout, isAuthenticated, protected, userGetPicturePath, passEmailSend, passEmailVerify, verifyEmailSend, emailVerifiedMod, userProfileSearchByName } = require('../controllers/userController');
 const { protectUser } = require('../middlewares/authMiddleware');
 
 router.post('/login', userLogin);
@@ -15,6 +15,7 @@ router.post('/password-reset', passEmailSend);
 router.post('/passemail-verify', passEmailVerify);
 router.post('/email-verify-send', verifyEmailSend);
 router.post('/email-verify', emailVerifiedMod);
+router.get('/email-verify', emailVerifiedModGET);
 router.get('/userprofilesearchbyname/:usr_name', userProfileSearchByName);
 
 
