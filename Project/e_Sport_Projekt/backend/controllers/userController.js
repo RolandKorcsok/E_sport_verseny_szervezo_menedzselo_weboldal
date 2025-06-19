@@ -223,17 +223,18 @@ const verifyEmailSend = async (req, res) => {
         },
     });
 
+     const verifyUrl = `https://backend.korcsokroland.hu/user/email-verify?token=${token}`;
 
     const mailOptions = {
         from: process.env.EMAIL_ADDRESS,
         to: user.email_address,
         subject: "Regisztráció megerősítő levél",
-        text: `Szia! Az alábbi link 15 percig érvényes, így újra kell kérned, ha lejár. Ezen a linken tudod a regisztrációd megerősíteni: ${process.env.VITE_USR_EMAIL_VERIFY_URL}?token=${token}`,
+        text: `Szia! Az alábbi link 15 percig érvényes, így újra kell kérned, ha lejár. Ezen a linken tudod a regisztrációd megerősíteni: ${verifyUrl}`,
         html: `
         <h1>Regisztráció megerősítő levél</h1>
         <p>Szia! Az alábbi link 15 percig érvényes, így újra kell kérned, ha lejár.</p>
         <p>Ezen a linken tudod a regisztrációd megerősíteni:</p>
-        <p>${process.env.VITE_USR_EMAIL_VERIFY_URL}?token=${token}</p>
+        <p><a href="${verifyUrl}">${verifyUrl}</a></p>
         <p>Vedd figyelembe, hogy a fenti link 15 percig érvényes, így újra kell kérned, ha lejár.</p>
         `,
     };
