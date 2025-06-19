@@ -196,19 +196,33 @@ const verifyEmailSend = async (req, res) => {
     const token = jwt.sign({ email: user.email_address }, process.env.JWT_SECRET, { expiresIn: "15m" });
 
 
+    // const transporter = nodemailer.createTransport({
+    //     host: process.env.SMTP_HOST,
+    //     service: process.env.SMTP_SERVICE,
+    //     port: process.env.SMTP_PORT,
+    //     secure: true,
+    //     auth: {
+    //         user: process.env.EMAIL_ADDRESS,
+    //         pass: process.env.EMAIL_PASSWORD
+    //     },
+    //     tls: {
+    //         rejectUnauthorized: false,
+    //     }
+    // })
+
     const transporter = nodemailer.createTransport({
-        host: process.env.SMTP_HOST,
-        service: process.env.SMTP_SERVICE,
-        port: process.env.SMTP_PORT,
-        secure: true,
+        host: "mail.nethely.hu",
+        port: 587,
+        secure: false, // fontos: ha 587, akkor ez false
         auth: {
-            user: process.env.EMAIL_ADDRESS,
-            pass: process.env.EMAIL_PASSWORD
+            user: process.env.EMAIL_ADDRESS, // például: info@korcsokroland.hu
+            pass: process.env.EMAIL_PASSWORD,
         },
         tls: {
-            rejectUnauthorized: false,
-        }
-    })
+            rejectUnauthorized: false, // szükséges lehet shared tárhelyen
+        },
+    });
+
 
     const mailOptions = {
         from: process.env.EMAIL_ADDRESS,
@@ -531,7 +545,7 @@ const userUpdate = async (req, res) => {
                 return;
             };
 
-            
+
 
 
             let trim_email = new_email_address.replaceAll(" ", "");
